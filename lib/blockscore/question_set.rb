@@ -1,49 +1,41 @@
 module BlockScore
-  class QuestionSet
+  class QuestionSet < Restful
+    PATH = '/questions'
 
-    def initialize(client)
-      @client = client
-    end
-
-    def create(verification_id, options = {})
-      body = (options.include? :body) ? options[:body] : {}
-      body[:verification_id] = verification_id
-
-      response = @client.post '/questions', body
-    end
-
-    # 
-    # '/questions/:id/score' POST
+    # Public: Duplicate some text an arbitrary number of times.
     #
-    # answers - 
-    def score(id, answers)
-    	body = {}
-      body[:answers] = answers
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def self.create(options = {})
+      req :post, PATH, options
+    end
 
-			response = @client.post "/questions/#{id.to_s}/score", body
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def self.score(options = {})
+      req :post, "#{PATH}/#{id.to_s}/score", options
 		end
 
-		# 
-		# /questions/:id GET
-		#
-		# question_set_id -
-		# verification_id -
-		def retrieve(id)
-			body = Hash.new
-
-			response = @client.get "/questions/#{id.to_s}", body
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+		def self.retrieve(options = {})
+      req :get, "#{PATH}/#{id.to_s}", options
 		end
 
-		# 
-		# '/questions' GET
-		#
-		def all(count = nil, offset = nil, options = {})
-			body = (options.include? :body) ? options[:body] : {}
-
-			body[:count] = count
-			body[:offset] = offset
-
-			@client.get '/questions', body
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+		def self.all(options = {})
+      req :get, PATH, options
 		end
 	end
 end
