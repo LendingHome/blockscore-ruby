@@ -1,35 +1,32 @@
 module BlockScore
-  class Company
+  class Company < Restful
+    PATH = '/companies'
 
-    def initialize(client)
-      @client = client
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def self.create(options = {})
+      req :post, PATH, options
     end
 
-    # 
-    # /companies POST
+    # Public: Duplicate some text an arbitrary number of times.
     #
-    def create(options = {})
-      response = @client.post '/companies', options
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def self.retrieve(options = {})
+      req :get, "#{PATH}/#{id.to_s}", options
     end
 
-    # 
-    # /companies/:id GET
+    # Public: Duplicate some text an arbitrary number of times.
     #
-    def retrieve(id, options = {})
-      body = (options.include? :query) ? options[:body] : {}
-      response = @client.get "/companies/#{id.to_s}", body
-    end
-
-    # 
-    # '/companies' GET
+    # options = {} -
     #
-    def all(count = nil, offset = nil, options = {})
-      body = (options.include? :body) ? options[:body] : {}
-
-      body[:count] = count
-      body[:offset] = offset
-
-      @client.get '/companies', body
+    # Returns the duplicated String.
+    def self.all(options = {})
+      req :get, PATH, options
     end
   end
 end
