@@ -1,47 +1,68 @@
 module BlockScore
-  class WatchlistCandidate
-    def initialize(client)
-      @client = client
-    end
+  class WatchlistCandidate < Restful
+    PATH = '/watchlist_candidates'
 
-    # POST https://api.blockscore.com/watchlist_candidates
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
     def create(options = {})
-      response = @client.post '/watchlist_candidates', options
+      req :post, PATH, options
     end
 
-    # PATCH https://api.blockscore.com/watchlist_candidates/{WATCHLIST_CANDIDATE_ID}
-    def edit(watchlist_candidate_id, options = {})
-      response = @client.put "/watchlist_candidates/#{watchlist_candidate_id}", options 
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def edit(options = {})
+      req :put, "#{PATH}/#{id.to_s}", options
     end
 
-    # DELETE https://api.blockscore.com/watchlist_candidates/{WATCHLIST_CANDIDATE_ID}
-    def delete(watchlist_candidate_id)
-      response = @client.delete "/watchlist_candidates/#{watchlist_candidate_id}"
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def delete(options = {})
+      req :delete, "#{PATH}/#{id.to_s}", options
     end
 
-    # GET https://api.blockscore.com/watchlist_candidates/{WATCHLIST_CANDIDATE_ID}
-    def retrieve(watchlist_candidate_id)
-      response = @client.get "/watchlist_candidates/#{watchlist_candidate_id}"
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def retrieve(options = {})
+      req :get, "#{PATH}/#{id.to_s}", options
     end
 
-    # GET https://api.blockscore.com/watchlist_candidates
-    def all(count = nil, offset = nil, options = {})
-      body = (options.include? :body) ? options[:body] : {}
-
-      body[:count] = count
-      body[:offset] = offset
-
-      @client.get '/watchlist_candidates', body
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def all(options = {})
+      req :get, PATH, options
     end
 
-    # GET https://api.blockscore.com/watchlist_candidates/:id/history
-    def history(watchlist_candidate_id)
-      response = @client.get "/watchlist_candidates/#{watchlist_candidate_id}/history"
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def history(options = {})
+      req :get, "#{PATH}/#{id.to_s}/history", options
     end
 
-    # GET https://api.blockscore.com/watchlist_candidates/:id/hits
-    def hits(watchlist_candidate_id)
-      response = @client.get "/watchlist_candidates/#{watchlist_candidate_id}/hits"
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def hits(options = {})
+      req :get, "#{PATH}/#{id.to_s}/hits", options
     end
   end
 end
