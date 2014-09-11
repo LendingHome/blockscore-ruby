@@ -1,15 +1,14 @@
 module BlockScore
-  class Watchlist
-    def initialize(client)
-      @client = client
-    end
-    # POST https://api.blockscore.com/watchlists
-    def search(watchlist_candidate_id, match_type = nil)
-      body = {}
-      body[:watchlist_candidate_id] = watchlist_candidate_id
-      body[:match_type] = match_type
+  class Watchlist < Restful
+    PATH = '/watchlists'
 
-      @client.post '/watchlists', body
+    # Public: Duplicate some text an arbitrary number of times.
+    #
+    # options = {} -
+    #
+    # Returns the duplicated String.
+    def search(options = {})
+      req :post, PATH, options
     end
   end
 end
