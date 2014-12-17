@@ -9,7 +9,7 @@ module BlockScore
     def initialize(message=nil, json_body={}, http_status="400",
                     error_type="invalid_request_error")
       super(message)
-
+      json_body ||= {}
       json_body["error"] ||= {}
       message_desc = "#{json_body["error"]["param"]} #{json_body["error"]["code"]}"
 
