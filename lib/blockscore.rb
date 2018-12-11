@@ -34,6 +34,7 @@ require 'blockscore/collection/member'
 require 'blockscore/connection'
 require 'blockscore/dispatch'
 require 'blockscore/fingerprint'
+require 'blockscore/watchlist_search_result'
 require 'blockscore/response'
 require 'blockscore/util'
 
