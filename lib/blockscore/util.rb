@@ -30,7 +30,8 @@ module BlockScore
     end
 
     def create_array(resource, arr)
-      arr.map { |obj| create_object(resource, obj) }
+      (0...arr.count).each { |i| arr[i] = create_object(resource, arr[i]) }
+      arr
     end
 
     def to_plural(str)
