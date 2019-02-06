@@ -17,8 +17,6 @@ module BlockScore
       request(:delete, path, nil)
     end
 
-    private
-
     def get(path, params)
       request(:get, encode_path_params(path, params), nil)
     end
@@ -30,6 +28,8 @@ module BlockScore
     def patch(path, params)
       request(:patch, path, params.to_json)
     end
+
+    private
 
     def request(method, final_endpoint, params)
       begin
